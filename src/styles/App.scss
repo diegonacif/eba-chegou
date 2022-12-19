@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Bree Serif', serif;
+}
+
+a {
+  text-decoration: none;
+    color: inherit;
+    // -webkit-tap-highlight-color: transparent;
+    &:focus-visible, &:focus-within, &:focus, &:active, &:target {
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+    }
+}
+
+// color variables
+$primary-color: #51aec8;
+$dark-blue: #3589a1;
+$white: #d9d9d9;
+$black: #12262b;
+$gray: #545454;
+
+@mixin padding($pt: 0, $pb: 0) {
+  padding: $pt 2rem $pb;
+};
+
+@mixin flex($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+.main-container {
+  @include flex(column);
+  height: 100vh;
+  width: 100vw;
+
+  header {
+    @include flex;
+    @include padding;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    background-color: $primary-color;
+    color: $black;
+  }
+
+  section {
+    @include flex(column);
+    @include padding(5rem);
+    height: calc(100vh - 4rem);
+
+    color: $white;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(23,58,68,1) 50%, rgba(53,137,161,1) 100%);
+
+    span {
+      font-size: 1.25rem;
+
+      &:not(:first-child) {
+        margin-top: 3rem;
+      }
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .input-wrapper {
+      @include flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      img {
+        height: 5rem;
+      }
+    }
+
+    a {
+      @include flex;
+      justify-content: center;
+      align-items: center;
+      width: 10rem;
+      height: 2.5rem;
+      border: 2px solid $primary-color;
+      border-radius: 16px;
+      font-size: 1.25rem;
+      background-color: transparent;
+      color: $white;
+      margin: 5rem auto 0;
+    }
+  }
+
+  :is(select, input) {
+    font-size: 1.25rem;
+  }
+
+  :is(select):not(select#answer) {
+    width: 9rem;
+    height: 2.75rem;
+    border-radius: 16px;
+    border: 0;
+    padding: 0 0.5rem;
+    text-align: center;
+    background-color: $primary-color;
+    font-size: 1.5rem;
+  }
+}
+
+@import '../pages/Result/Result';

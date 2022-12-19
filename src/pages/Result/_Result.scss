@@ -1,0 +1,10 @@
+.result-container {
+  @include flex(column);
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  
+  background: rgb(16,75,92);
+  background: linear-gradient(0deg, rgba(16,75,92,1) 0%, rgba(84,172,197,1) 30%, rgba(84,172,197,1) 70%, rgba(16,75,92,1) 100%);
+}

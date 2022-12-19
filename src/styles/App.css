@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bree Serif", serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:focus-visible, a:focus-within, a:focus, a:active, a:target {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+.main-container header {
+  display: flex;
+  flex-direction: row;
+  padding: 0 2rem 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  background-color: #51aec8;
+  color: #12262b;
+}
+.main-container section {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 2rem 0;
+  height: calc(100vh - 4rem);
+  color: #d9d9d9;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(23, 58, 68) 50%, rgb(53, 137, 161) 100%);
+}
+.main-container section span {
+  font-size: 1.25rem;
+}
+.main-container section span:not(:first-child) {
+  margin-top: 3rem;
+}
+.main-container section span:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.main-container section .input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.main-container section .input-wrapper img {
+  height: 5rem;
+}
+.main-container section a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 2.5rem;
+  border: 2px solid #51aec8;
+  border-radius: 16px;
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: #d9d9d9;
+  margin: 5rem auto 0;
+}
+.main-container :is(select, input) {
+  font-size: 1.25rem;
+}
+.main-container :is(select):not(select#answer) {
+  width: 9rem;
+  height: 2.75rem;
+  border-radius: 16px;
+  border: 0;
+  padding: 0 0.5rem;
+  text-align: center;
+  background-color: #51aec8;
+  font-size: 1.5rem;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  background: rgb(16, 75, 92);
+  background: linear-gradient(0deg, rgb(16, 75, 92) 0%, rgb(84, 172, 197) 30%, rgb(84, 172, 197) 70%, rgb(16, 75, 92) 100%);
+}/*# sourceMappingURL=App.css.map */
