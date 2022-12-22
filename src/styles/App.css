@@ -24,18 +24,33 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .main-container header {
   display: flex;
   flex-direction: row;
-  padding: 0 2rem 0;
+  padding: 0 1rem 0;
   align-items: center;
   justify-content: space-between;
   height: 4rem;
   background-color: #51aec8;
   color: #12262b;
 }
+.main-container header a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main-container header button {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 .main-container section {
   display: flex;
   flex-direction: column;
-  padding: 5rem 2rem 0;
+  padding: 5rem 1rem 0;
   height: calc(100vh - 4rem);
+  position: relative;
   color: #d9d9d9;
   background: rgb(0, 0, 0);
   background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(23, 58, 68) 50%, rgb(53, 137, 161) 100%);
@@ -95,4 +110,93 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   justify-content: center;
   background: rgb(16, 75, 92);
   background: linear-gradient(0deg, rgb(16, 75, 92) 0%, rgb(84, 172, 197) 30%, rgb(84, 172, 197) 70%, rgb(16, 75, 92) 100%);
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(23, 58, 68) 50%, rgb(53, 137, 161) 100%);
+}
+.auth-container header {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1rem 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  background-color: #51aec8;
+  color: #12262b;
+}
+.auth-container header a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.auth-container section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: calc(100vh - 4rem);
+}
+.auth-container section span {
+  color: #d9d9d9;
+  font-size: 1.5rem;
+}
+.auth-container section .input-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: center;
+}
+.auth-container section .input-wrapper svg {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+}
+.auth-container section .input-wrapper:first-of-type {
+  margin-top: 2rem;
+}
+.auth-container section .input-wrapper:not(:first-of-type) {
+  margin-top: 1rem;
+}
+.auth-container section .input-wrapper input {
+  width: 20rem;
+  height: 2.75rem;
+  border-radius: 16px;
+  border: 0;
+  padding: 0 0.5rem;
+  background-color: #51aec8;
+  font-size: 1.5rem;
+  padding-left: 3.25rem;
+}
+.auth-container section .input-wrapper input::-moz-placeholder {
+  color: #545454;
+  font-size: 1.25rem;
+}
+.auth-container section .input-wrapper input:-ms-input-placeholder {
+  color: #545454;
+  font-size: 1.25rem;
+}
+.auth-container section .input-wrapper input::placeholder {
+  color: #545454;
+  font-size: 1.25rem;
+}
+.auth-container button {
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 2.5rem;
+  border: 2px solid #51aec8;
+  border-radius: 16px;
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: #d9d9d9;
+  margin: 5rem auto 0;
+  cursor: pointer;
 }/*# sourceMappingURL=App.css.map */

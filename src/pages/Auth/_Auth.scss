@@ -1,0 +1,89 @@
+.auth-container {
+  @include flex(column);
+  // justify-content: center;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(23,58,68,1) 50%, rgba(53,137,161,1) 100%);
+
+  header {
+    @include flex;
+    @include padding;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    background-color: $primary-color;
+    color: $black;
+
+    a {
+      @include flex;
+      align-items: center;
+    }
+  }
+
+  section {
+    @include flex(column);
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: calc(100vh - 4rem);
+
+    span {
+      color: $white;
+      font-size: 1.5rem;
+    }
+
+    .input-wrapper {
+      @include flex(row);
+      position: relative;
+      justify-content: center;
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 0.5rem;
+        transform: translateY(-50%);
+      }
+
+      &:first-of-type {
+        margin-top: 2rem;
+      }
+
+      &:not(:first-of-type) {
+        margin-top: 1rem;
+      }
+  
+      input {
+        width: 20rem;
+        height: 2.75rem;
+        border-radius: 16px;
+        border: 0;
+        padding: 0 0.5rem;
+        background-color: $primary-color;
+        font-size: 1.5rem;
+        padding-left: 3.25rem;
+
+        &::placeholder {
+          color: $gray;
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+
+  button {
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 2.5rem;
+    border: 2px solid $primary-color;
+    border-radius: 16px;
+    font-size: 1.25rem;
+    background-color: transparent;
+    color: $white;
+    margin: 5rem auto 0;
+    cursor: pointer;
+  }
+}

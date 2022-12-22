@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSessionStorage } from 'usehooks-ts';
 
 import jsonData from './assets/data.json';
 import apartment from './assets/apartment.svg';
-import './styles/App.css';
 import { Link } from 'react-router-dom';
+import { UserCircle, SignOut } from "phosphor-react";
+import './styles/App.css';
+
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // Controlador Hook Form
@@ -15,16 +20,6 @@ function App() {
     getValues
   } = useForm({
     mode: "all",
-    // defaultValues: {
-    //   "strength": "10",
-    //   "dexterity": "10",
-    //   "inteligence": "10",
-    //   "vitality": "10",
-    //   "hitPoints": "10",
-    //   "will": "10",
-    //   "perception": "10",
-    //   "fatiguePoints": "10"
-    // }
   });
 
   const currentFloor = watch("floor");
@@ -42,13 +37,40 @@ function App() {
     setCurrentApts(jsonData.apt4) : [];
   }, [watch("floor")])
 
-  console.log(watch("apt"));
+  const [isAuthenticated, setIsAuthenticated] = useSessionStorage('isAuthenticated', false);
 
+  const handleSignOut = () => {
+    setIsAuthenticated(false);
+    NotifySuccess();
+  }
+
+  const NotifySuccess = () => {
+    toast.success('Deslogado!', {
+      position: "bottom-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  
   return (
     <div className="main-container">
       <header>
         <h2>Eba, chegou!</h2>
-        <Link to="/auth">Auth</Link>
+        {
+          isAuthenticated ?
+          <button onClick={() => {handleSignOut()}}>
+            <SignOut size={40} color="#154854" weight="fill" />
+          </button> :
+          <Link to="/auth">
+            <UserCircle size={40} color="#154854" weight="fill" />
+          </Link>
+        }
+        
       </header>
 
       <section>
@@ -113,6 +135,7 @@ function App() {
           <option value="no">Espere mais um cadin</option>
         </select> */}
       </section>
+      <ToastContainer closeButton={false} />
     </div>
   )
 }

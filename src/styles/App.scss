@@ -19,12 +19,13 @@ a {
 // color variables
 $primary-color: #51aec8;
 $dark-blue: #3589a1;
+$darkest-blue: #154854;
 $white: #d9d9d9;
 $black: #12262b;
 $gray: #545454;
 
 @mixin padding($pt: 0, $pb: 0) {
-  padding: $pt 2rem $pb;
+  padding: $pt 1rem $pb;
 };
 
 @mixin flex($direction: row) {
@@ -45,12 +46,27 @@ $gray: #545454;
     height: 4rem;
     background-color: $primary-color;
     color: $black;
+
+    a {
+      @include flex;
+      align-items: center;
+    }
+
+    button {
+      @include flex;
+      background-color: transparent;
+      border: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
   }
 
   section {
     @include flex(column);
     @include padding(5rem);
     height: calc(100vh - 4rem);
+    position: relative;
 
     color: $white;
     background: rgb(0,0,0);
@@ -109,3 +125,4 @@ $gray: #545454;
 }
 
 @import '../pages/Result/Result';
+@import '../pages/Auth/Auth';
