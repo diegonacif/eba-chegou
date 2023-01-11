@@ -1,14 +1,17 @@
+import { useParams } from 'react-router-dom';
+
 import eba from "../../assets/result-eba.png";
 import ops from "../../assets/result-ops.png";
 
 export const Result = () => {
 
-  const result = false;
+  const { status } = useParams();
   
   return (
     <div className="result-container">
-      { result ? <img src={eba} alt="" /> : null }
-      { !result ? <img src={ops} alt="" /> : null }
+      { status === "undefined" ? <h1>Residente não cadastrado</h1> : null }
+      { status === "true" ? <img src={eba} alt="" /> : null }
+      { status === "false" ? <img src={ops} alt="" /> : null }
     </div>
   )
 }

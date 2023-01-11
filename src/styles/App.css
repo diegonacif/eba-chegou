@@ -73,7 +73,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .main-container section .input-wrapper img {
   height: 5rem;
 }
-.main-container section a {
+.main-container section button {
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -5,14 +5,18 @@ import { useSessionStorage } from 'usehooks-ts';
 import jsonData from './assets/data.json';
 import apartment from './assets/apartment.svg';
 import { Link } from 'react-router-dom';
-import { UserCircle, SignOut } from "phosphor-react";
+import { UserCircle, SignOut, WindowsLogo } from "phosphor-react";
 import './styles/App.css';
 
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from './services/firebase-config.js';
+
 function App() {
-  // Controlador Hook Form
+
+   // Controlador Hook Form
   const {
     watch,
     register,
@@ -22,21 +26,46 @@ function App() {
     mode: "all",
   });
 
-  const currentFloor = watch("floor");
-
-  const [currentApts, setCurrentApts] = useState([0]);
-
+  // Current Block State
+  const [block, setBlock] = useState(1);
   useEffect(() => {
-    currentFloor === "1" ?
-    setCurrentApts(jsonData.apt1) :
-    currentFloor === "2" ?
-    setCurrentApts(jsonData.apt2) :
-    currentFloor === "3" ?
-    setCurrentApts(jsonData.apt3) :
-    currentFloor === "4" ?
-    setCurrentApts(jsonData.apt4) : [];
-  }, [watch("floor")])
+    if(getValues("block") === undefined || getValues("block") === "") {
+      return;
+    } else {
+      return setBlock(getValues("block"));
+    }
+  }, [watch("block")]);
 
+  const blocksCollectionRef = collection(db, "blocks");
+  const apartmentsCollectionRef = collection(db, `blocks/${block}/apartments`);
+  const [blocks, setBlocks] = useState([]);
+  const [apartments, setApartments] = useState([]);
+
+  // console.log(
+  //   apartments.map(({ status, id }) =>  )
+  // )
+
+  // const [residentDeliverStatus, setResidentDeliverStatus] = useState(false);
+
+  // Blocks Data
+  useEffect(() => {
+    const getBlocks = async () => {
+      const data = await getDocs(blocksCollectionRef);
+      setBlocks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    getBlocks();
+  }, [])
+
+  // Apartments Data
+  useEffect(() => {
+    const getApartments = async () => {
+      const data = await getDocs(apartmentsCollectionRef);
+      setApartments(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    getApartments();
+  }, [block])
+
+  // Authentication
   const [isAuthenticated, setIsAuthenticated] = useSessionStorage('isAuthenticated', false);
 
   const handleSignOut = () => {
@@ -56,6 +85,20 @@ function App() {
       theme: "dark",
     });
   };
+
+  // Handle Result
+  const handleResult = () => {
+    const resultApt = (watch("apt"));
+    const resultStatus = apartments.filter(x => x.id === resultApt)[0].status
+    // const resident = residents.find((resident) => resident.apartment === resultApt & resident.block === resultBlock);
+    
+    return (
+      console.log(resultStatus),
+      window.location.assign(`/result/${resultStatus}`)
+    )
+  }
+
+  console.log(watch("apt"))
   
   return (
     <div className="main-container">
@@ -83,14 +126,14 @@ function App() {
             {...register("block")}
           >
             <option value="" disabled>Selecione</option>
-            {jsonData.block.map((option) => (
-              <option key={option} value={option}>{option}</option>
+            {blocks?.map((data) => (
+              <option key={data.id} value={data.id}>{data.id}</option>
             ))}
           </select>
         </div>
         
-        {
-          watch("block") !== undefined ?
+        {/* {
+          watch("block") !== "" ?
           <>
             <span>Escolha o seu andar</span>
             <select 
@@ -99,15 +142,15 @@ function App() {
               {...register("floor")}
             >
               <option value="" id="selector" disabled>Selecione</option>
-              {jsonData.floor.map((option) => (
+              {locals[1]?.list.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
             </select>
           </> :
           null
-        }
+        } */}
         {
-          watch("floor") !== undefined ?
+          watch("block") !== "" ?
           <>
             <span>Agora o seu apartamento</span>
             <select 
@@ -116,17 +159,17 @@ function App() {
               {...register("apt")}
             >
               <option value="" id="selector" disabled>Selecione</option>
-              {currentApts.map((option) => (
-                <option key={option} value={option}>{option}</option>
+              {apartments.map((option) => (
+                <option key={option.id} value={option.id}>{option.id}</option>
               ))}
             </select>
           </> :
           null
         }
         { 
-          watch("apt") === "" || watch("apt") === undefined ?
-          null :
-          <Link to="/result">Confirmar</Link>
+          watch("apt") !== "" & watch("apt") !== undefined ?
+          <button onClick={handleResult}>Confirmar</button> :
+          null
         }
         
 
