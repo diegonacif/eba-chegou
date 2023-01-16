@@ -21,30 +21,6 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   height: 100vh;
   width: 100vw;
 }
-.main-container header {
-  display: flex;
-  flex-direction: row;
-  padding: 0 1rem 0;
-  align-items: center;
-  justify-content: space-between;
-  height: 4rem;
-  background-color: #51aec8;
-  color: #12262b;
-}
-.main-container header a {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.main-container header button {
-  display: flex;
-  flex-direction: row;
-  background-color: transparent;
-  border: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
 .main-container section {
   display: flex;
   flex-direction: column;
@@ -198,5 +174,30 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   background-color: transparent;
   color: #d9d9d9;
   margin: 5rem auto 0;
+  cursor: pointer;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1rem 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  background-color: #51aec8;
+  color: #12262b;
+}
+.header-container a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header-container button {
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }/*# sourceMappingURL=App.css.map */

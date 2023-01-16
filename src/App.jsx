@@ -5,7 +5,7 @@ import { useSessionStorage } from 'usehooks-ts';
 import jsonData from './assets/data.json';
 import apartment from './assets/apartment.svg';
 import { Link } from 'react-router-dom';
-import { UserCircle, SignOut, WindowsLogo } from "phosphor-react";
+// import { UserCircle, SignOut, WindowsLogo } from "phosphor-react";
 import './styles/App.css';
 
 import { toast, ToastContainer } from 'react-toastify';
@@ -15,6 +15,7 @@ import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase
 import { db } from './services/firebase-config.js';
 // import { AuthGoogleContext } from './contexts/AuthGoogleProvider';
 import { AuthEmailContext } from './contexts/AuthEmailProvider';
+import { Header } from './components/Header/Header';
 
 function App() {
 
@@ -26,20 +27,10 @@ function App() {
     registerUser,
     loginUser,
     logoutUser,
-    signed
+    signed,
+    isSignedIn
   } = useContext(AuthEmailContext);
-  // let userLoggedIn = JSON.parse(user);
   
-
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsSignedIn(signed);
-    }, 300)
-  }, [signed])
-
-  console.log({signed: signed, isSignedIn: isSignedIn});
-
    // Controlador Hook Form
   const {
     watch,
@@ -120,19 +111,8 @@ function App() {
 
   return (
     <div className="main-container">
-      <header>
-        <h2>Eba, chegou!</h2>
-        {
-          isAuthenticated ?
-          <button onClick={() => {handleSignOut()}}>
-            <SignOut size={40} color="#154854" weight="fill" />
-          </button> :
-          <Link to="/auth">
-            <UserCircle size={40} color="#154854" weight="fill" />
-          </Link>
-        }
-        
-      </header>
+      
+      <Header />
 
       <section>
         <span>Escolha o seu bloco</span>
@@ -178,7 +158,8 @@ function App() {
           <option value="yes">Chegou sua encomenda!</option>
           <option value="no">Espere mais um cadin</option>
         </select> */}
-        <button onClick={() => logoutUser()}>Signout</button>
+
+        {/* <button onClick={() => logoutUser()}>Signout</button> */}
       </section>
       <ToastContainer closeButton={false} />
     </div>

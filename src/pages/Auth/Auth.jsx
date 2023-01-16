@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useSessionStorage } from 'usehooks-ts';
 import { UserCircle, LockKeyOpen, XCircle } from "phosphor-react";
 import { toast, ToastContainer } from 'react-toastify';
@@ -31,16 +31,22 @@ export const Auth = () => {
     setLoginEmail,
     setLoginPassword,
     loginUser,
-    logoutUser 
+    logoutUser,
+    isSignedIn
   } = useContext(AuthEmailContext);
 
+  const navigate = useNavigate();
+
+  // Back to main page when logged in
+  useEffect(() => {
+    isSignedIn ? navigate("/") : null;
+  }, [isSignedIn])
+
+  // Inputs data going to auth context
   useEffect(() => {
     setLoginEmail(watch("email"));
     setLoginPassword(watch("password"));
   }, [watch()]);
-  
-
-  
 
   const NotifyError = () => {
     toast.error('Senha incorreta!', {

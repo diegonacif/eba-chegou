@@ -1,0 +1,23 @@
+.header-container {
+  @include flex;
+  @include padding;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  background-color: $primary-color;
+  color: $black;
+
+  a {
+    @include flex;
+    align-items: center;
+  }
+
+  button {
+    @include flex;
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}

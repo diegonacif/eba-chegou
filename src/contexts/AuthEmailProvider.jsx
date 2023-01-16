@@ -16,8 +16,11 @@ export const AuthEmailProvider = ({ children }) => {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
-  // console.log(loginEmail, loginPassword);
+  useEffect(() => {
+    setIsSignedIn(!!user);
+  }, [user])
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser)
@@ -69,8 +72,7 @@ export const AuthEmailProvider = ({ children }) => {
       registerUser,
       loginUser,
       logoutUser,
-      signed: !!user,
-      user
+      isSignedIn
     }}>
       {children}
     </AuthEmailContext.Provider>
