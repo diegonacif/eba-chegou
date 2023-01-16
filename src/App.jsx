@@ -13,13 +13,32 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from './services/firebase-config.js';
-import { AuthGoogleContext } from './contexts/AuthGoogleProvider';
+// import { AuthGoogleContext } from './contexts/AuthGoogleProvider';
+import { AuthEmailContext } from './contexts/AuthEmailProvider';
 
 function App() {
 
-  const { user, handleGoogleSignOut } = useContext(AuthGoogleContext);
-  let userLoggedIn = JSON.parse(user);
-  console.log(userLoggedIn);
+  const { 
+    registerEmail, 
+    setRegisterEmail, 
+    registerPassword, 
+    setRegisterPassword,
+    registerUser,
+    loginUser,
+    logoutUser,
+    signed
+  } = useContext(AuthEmailContext);
+  // let userLoggedIn = JSON.parse(user);
+  
+
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsSignedIn(signed);
+    }, 300)
+  }, [signed])
+
+  console.log({signed: signed, isSignedIn: isSignedIn});
 
    // Controlador Hook Form
   const {
@@ -159,7 +178,7 @@ function App() {
           <option value="yes">Chegou sua encomenda!</option>
           <option value="no">Espere mais um cadin</option>
         </select> */}
-        <button onClick={() => handleGoogleSignOut()}>Signout</button>
+        <button onClick={() => logoutUser()}>Signout</button>
       </section>
       <ToastContainer closeButton={false} />
     </div>

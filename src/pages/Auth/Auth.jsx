@@ -27,11 +27,16 @@ export const Auth = () => {
     mode: "all"
   });
   
-  const { setRegisterEmail, setRegisterPassword, registerUser } = useContext(AuthEmailContext);
+  const { 
+    setLoginEmail,
+    setLoginPassword,
+    loginUser,
+    logoutUser 
+  } = useContext(AuthEmailContext);
 
   useEffect(() => {
-    setRegisterEmail(watch("email"));
-    setRegisterPassword(watch("password"));
+    setLoginEmail(watch("email"));
+    setLoginPassword(watch("password"));
   }, [watch()]);
   
 
@@ -82,7 +87,7 @@ export const Auth = () => {
           <input type="password" placeholder="Senha" {...register("password")}/>
         </div>
         
-          <button onClick={() => registerUser()}>Confirmar</button> :
+          <button onClick={() => loginUser()}>Confirmar</button> :
         
         <ToastContainer closeButton={false} />
       </section>
