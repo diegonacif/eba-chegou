@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSessionStorage } from 'usehooks-ts';
 
@@ -13,8 +13,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from './services/firebase-config.js';
+import { AuthGoogleContext } from './contexts/AuthGoogleProvider';
 
 function App() {
+
+  const { user, handleGoogleSignOut } = useContext(AuthGoogleContext);
+  let userLoggedIn = JSON.parse(user);
+  console.log(userLoggedIn);
 
    // Controlador Hook Form
   const {
@@ -40,10 +45,6 @@ function App() {
   const apartmentsCollectionRef = collection(db, `blocks/${block}/apartments`);
   const [blocks, setBlocks] = useState([]);
   const [apartments, setApartments] = useState([]);
-
-  // console.log(
-  //   apartments.map(({ status, id }) =>  )
-  // )
 
   // const [residentDeliverStatus, setResidentDeliverStatus] = useState(false);
 
@@ -98,8 +99,6 @@ function App() {
     )
   }
 
-  console.log(watch("apt"))
-  
   return (
     <div className="main-container">
       <header>
@@ -132,25 +131,8 @@ function App() {
           </select>
         </div>
         
-        {/* {
-          watch("block") !== "" ?
-          <>
-            <span>Escolha o seu andar</span>
-            <select 
-              id="floor" 
-              defaultValue={""}
-              {...register("floor")}
-            >
-              <option value="" id="selector" disabled>Selecione</option>
-              {locals[1]?.list.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </> :
-          null
-        } */}
         {
-          watch("block") !== "" ?
+          watch("block") !== "" & watch("block") !== undefined ?
           <>
             <span>Agora o seu apartamento</span>
             <select 
@@ -177,6 +159,7 @@ function App() {
           <option value="yes">Chegou sua encomenda!</option>
           <option value="no">Espere mais um cadin</option>
         </select> */}
+        <button onClick={() => handleGoogleSignOut()}>Signout</button>
       </section>
       <ToastContainer closeButton={false} />
     </div>

@@ -9,7 +9,7 @@ export const Result = () => {
   
   return (
     <div className="result-container">
-      { status === "undefined" ? <h1>Residente não cadastrado</h1> : null }
+      { status === "undefined" ? <h1>Resultado não encontrado</h1> : null }
       { status === "true" ? <img src={eba} alt="" /> : null }
       { status === "false" ? <img src={ops} alt="" /> : null }
     </div>

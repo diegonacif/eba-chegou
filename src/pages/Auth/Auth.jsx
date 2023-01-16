@@ -1,13 +1,21 @@
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useSessionStorage } from 'usehooks-ts';
 import { UserCircle, LockKeyOpen, XCircle } from "phosphor-react";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { AuthGoogleContext } from '../../contexts/AuthGoogleProvider';
+import { AuthEmailContext } from '../../contexts/AuthEmailProvider';
+
+
 
 export const Auth = () => {
-
-  const [isAuthenticated, setIsAuthenticated] = useSessionStorage('isAuthenticated', false);
+  // const { handleGoogleSignIn, signed, user } = useContext(AuthGoogleContext);
+  
+  // async function loginGoogle() {
+  //   await handleGoogleSignIn();
+  // }
 
   // Controlador Hook Form
   const {
@@ -18,9 +26,16 @@ export const Auth = () => {
   } = useForm({
     mode: "all"
   });
+  
+  const { setRegisterEmail, setRegisterPassword, registerUser } = useContext(AuthEmailContext);
 
-  const user = "administrador";
-  const pwrd = "zegoiaba";
+  useEffect(() => {
+    setRegisterEmail(watch("email"));
+    setRegisterPassword(watch("password"));
+  }, [watch()]);
+  
+
+  
 
   const NotifyError = () => {
     toast.error('Senha incorreta!', {
@@ -47,23 +62,8 @@ export const Auth = () => {
     });
   };
 
-  const handleAuth = () => {
-    if (watch("username") === "administrador" && watch("password") === "zegoiaba") {
-      console.log("auth successful")
-      NotifySuccess();
-      setIsAuthenticated(true);
-      setTimeout(() => {
-        window.location.replace("/")
-      }, 2000)
-
-    } else {
-      console.log("auth failed")
-      NotifyError();
-    }
-  }
-
-
   return (
+
     <div className="auth-container">
       <header>
         <h2>Área do Porteiro</h2>
@@ -74,16 +74,16 @@ export const Auth = () => {
       <section>
         <span>Faça login para continuar</span>
         <div className="input-wrapper">
-          {/* <label htmlFor="username">Usuário</label> */}
           <UserCircle size={36} color="#154854" weight="duotone" />
-          <input type="text" placeholder="Usuário" {...register("username")}/>
+          <input type="text" placeholder="Email" {...register("email")}/>
         </div>
         <div className="input-wrapper">
-          {/* <label htmlFor="password">Senha</label> */}
           <LockKeyOpen size={36} color="#154854" weight="duotone" />
           <input type="password" placeholder="Senha" {...register("password")}/>
         </div>
-        <button onClick={() => handleAuth()}>Confirmar</button>
+        
+          <button onClick={() => registerUser()}>Confirmar</button> :
+        
         <ToastContainer closeButton={false} />
       </section>
     </div>
