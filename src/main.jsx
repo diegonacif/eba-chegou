@@ -10,6 +10,7 @@ import { Result } from './pages/Result/Result';
 import { Auth } from './pages/Auth/Auth';
 import { AuthGoogleProvider } from './contexts/AuthGoogleProvider';
 import { AuthEmailProvider } from './contexts/AuthEmailProvider';
+import { Manager } from './pages/Manager/Manager';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/" element={<App />} />
           <Route path="/result/:status" element={<Result />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/manager" element={<Manager />} />
         </Routes>
       </BrowserRouter>
     </AuthEmailProvider>

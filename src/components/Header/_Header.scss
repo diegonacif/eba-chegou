@@ -1,6 +1,7 @@
 .header-container {
   @include flex;
   @include padding;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   height: 4rem;

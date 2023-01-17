@@ -7,6 +7,8 @@ import {
   } from 'firebase/auth'
 import { auth } from '../services/firebase-config';
 
+import { toast, ToastContainer } from 'react-toastify';
+
 export const AuthEmailContext = createContext({});
 
 export const AuthEmailProvider = ({ children }) => {
@@ -17,6 +19,7 @@ export const AuthEmailProvider = ({ children }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     setIsSignedIn(!!user);
@@ -59,8 +62,6 @@ export const AuthEmailProvider = ({ children }) => {
     }
   }
 
-  
-
   return (
     <AuthEmailContext.Provider value={{ 
       registerEmail, 
@@ -72,7 +73,8 @@ export const AuthEmailProvider = ({ children }) => {
       registerUser,
       loginUser,
       logoutUser,
-      isSignedIn
+      isSignedIn,
+      errorMsg
     }}>
       {children}
     </AuthEmailContext.Provider>

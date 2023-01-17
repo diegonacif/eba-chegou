@@ -80,7 +80,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useSessionStorage('isAuthenticated', false);
 
   const handleSignOut = () => {
-    setIsAuthenticated(false);
+    logoutUser();
     NotifySuccess();
   }
 

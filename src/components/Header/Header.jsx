@@ -1,7 +1,11 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom";
-import { AuthEmailContext } from "../../contexts/AuthEmailProvider"
+import { AuthEmailContext } from "../../contexts/AuthEmailProvider";
 import { UserCircle, SignOut, WindowsLogo } from "phosphor-react";
+import '../../styles/App.css';
+import { MenuButton } from "../MenuButton/MenuButton";
+
+
 
 export const Header = () => {
   const { logoutUser, isSignedIn } = useContext(AuthEmailContext);
@@ -11,13 +15,12 @@ export const Header = () => {
       <h2>Eba, chegou!</h2>
       {
         isSignedIn ?
-        <button onClick={() => logoutUser()}>
-          <SignOut size={40} color="#154854" weight="fill" />
-        </button> :
+        <MenuButton /> :
         <Link to="/auth">
           <UserCircle size={40} color="#154854" weight="fill" />
         </Link>
       }
+      
     </div>
   )
 }

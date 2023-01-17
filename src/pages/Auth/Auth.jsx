@@ -32,7 +32,8 @@ export const Auth = () => {
     setLoginPassword,
     loginUser,
     logoutUser,
-    isSignedIn
+    isSignedIn,
+    errorMsg
   } = useContext(AuthEmailContext);
 
   const navigate = useNavigate();
@@ -47,6 +48,10 @@ export const Auth = () => {
     setLoginEmail(watch("email"));
     setLoginPassword(watch("password"));
   }, [watch()]);
+
+  function handleLogin () {
+    loginUser();
+  }
 
   const NotifyError = () => {
     toast.error('Senha incorreta!', {
@@ -93,7 +98,7 @@ export const Auth = () => {
           <input type="password" placeholder="Senha" {...register("password")}/>
         </div>
         
-          <button onClick={() => loginUser()}>Confirmar</button> :
+          <button onClick={() => handleLogin()}>Confirmar</button> :
         
         <ToastContainer closeButton={false} />
       </section>

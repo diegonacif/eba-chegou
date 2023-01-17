@@ -24,6 +24,16 @@ $white: #d9d9d9;
 $black: #12262b;
 $gray: #545454;
 
+// Colors Variables
+
+$gray-bg-mirror: rgba(206, 206, 206, 0.3);
+$gray-bg: #cecece;
+$darkgray-bg: #707070;
+$black-bg: #0f0f0f;
+$black-bg-mirror-95: rgba(15, 15, 15, 0.95);
+$blue-bg-mirror-50: rgba(81, 174, 200, 0.5);
+$green-bg-mirror-95: rgba(23, 161, 65, 0.95);
+
 @mixin padding($pt: 0, $pb: 0) {
   padding: $pt 1rem $pb;
 };
@@ -103,3 +113,4 @@ $gray: #545454;
 @import '../pages/Result/Result';
 @import '../pages/Auth/Auth';
 @import '../components/Header/Header';
+@import '../components/MenuButton/MenuButton';
