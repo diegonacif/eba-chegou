@@ -27,7 +27,6 @@ function App() {
     registerUser,
     loginUser,
     logoutUser,
-    signed,
     isSignedIn
   } = useContext(AuthEmailContext);
   
@@ -55,8 +54,22 @@ function App() {
   const apartmentsCollectionRef = collection(db, `blocks/${block}/apartments`);
   const [blocks, setBlocks] = useState([]);
   const [apartments, setApartments] = useState([]);
+  const status = [
+    { text: "Não Chegou", id: 0 },
+    { text: "Chegou", id: 1 },
+  ]
+  const currentStatus = apartments.filter(x => x.id === watch("apt"))[0]?.status
+  
+  const newStatus = watch("status") === "Chegou" ? true : 
+                    watch("status") === "Não Chegou" ? false :
+                    null
+  
 
-  // const [residentDeliverStatus, setResidentDeliverStatus] = useState(false);
+  // console.log({"status atual": currentStatus, "status selecionado": watch("status")});
+  // console.log(apartments.filter(x => x.id === watch("apt"))[0]?.id)
+  console.log({newstatus: newStatus, currentStatus: currentStatus, aptForm: watch("apt")});
+
+
 
   // Blocks Data
   useEffect(() => {
@@ -74,15 +87,15 @@ function App() {
       setApartments(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getApartments();
+    setValue("apt", "");
   }, [block])
 
-  // Authentication
-  const [isAuthenticated, setIsAuthenticated] = useSessionStorage('isAuthenticated', false);
+  // useEffect(() => {
+  //   setValue("status", "")
+  // }, [watch("apt")])
 
-  const handleSignOut = () => {
-    logoutUser();
-    NotifySuccess();
-  }
+  // console.log(apartments.filter(x => x.id === watch("apt"))[0]?.status);
+  // console.log(status)
 
   const NotifySuccess = () => {
     toast.success('Deslogado!', {
@@ -101,13 +114,21 @@ function App() {
   const handleResult = () => {
     const resultApt = (watch("apt"));
     const resultStatus = apartments.filter(x => x.id === resultApt)[0].status
-    // const resident = residents.find((resident) => resident.apartment === resultApt & resident.block === resultBlock);
     
     return (
-      console.log(resultStatus),
+      // console.log(resultStatus),
       window.location.assign(`/result/${resultStatus}`)
     )
   }
+
+  const updateStatus = async (id, status) => {
+    const statusDoc = doc(db, `blocks/${block}/apartments`, id)
+    const newStatus = {status: status}
+    await updateDoc(statusDoc, newStatus)
+    NotifySuccess();
+    window.location.reload(true)
+  }
+
 
   return (
     <div className="main-container">
@@ -115,7 +136,7 @@ function App() {
       <Header />
 
       <section>
-        <span>Escolha o seu bloco</span>
+        {isSignedIn ? <span>Escolha o bloco</span> : <span>Escolha o seu bloco</span>}
         <div className="input-wrapper">
           <img src={apartment} alt="" />
           <select 
@@ -133,7 +154,7 @@ function App() {
         {
           watch("block") !== "" & watch("block") !== undefined ?
           <>
-            <span>Agora o seu apartamento</span>
+            {isSignedIn ? <span>Agora o apartamento</span> : <span>Agora o seu apartamento</span>}
             <select 
               id="apt" 
               defaultValue={""}
@@ -147,17 +168,41 @@ function App() {
           </> :
           null
         }
-        { 
+        {
+          isSignedIn &  watch("apt") !== "" & watch("apt") !== undefined ?
+          <>
+            <span>Selecione o status de encomenda</span>
+
+            <select 
+              id="status"
+              {...register("status")}
+            >
+              {status.map((option) => (
+                <option key={option.id} value={option.text} selected={currentStatus ? true : false}>{option.text}</option>
+              ))}
+            </select>
+
+
+
+            {/* <select id="answer" {...register("answer")}>
+              <option value="yes">Chegou</option>
+              <option value="no">Não chegou</option>
+            </select> */}
+          </> :
+          null
+        }
+        { isSignedIn ?
+
+          watch("apt") !== "" & watch("apt") !== undefined ?
+          <button onClick={() => updateStatus(watch("apt"), newStatus)}>Confirmar</button> :
+          null : 
+
           watch("apt") !== "" & watch("apt") !== undefined ?
           <button onClick={handleResult}>Confirmar</button> :
           null
         }
         
-
-        {/* <select id="answer" {...register("answer")}>
-          <option value="yes">Chegou sua encomenda!</option>
-          <option value="no">Espere mais um cadin</option>
-        </select> */}
+        
 
         {/* <button onClick={() => logoutUser()}>Signout</button> */}
       </section>
