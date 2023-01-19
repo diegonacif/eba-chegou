@@ -64,13 +64,6 @@ function App() {
                     watch("status") === "Não Chegou" ? false :
                     null
   
-
-  // console.log({"status atual": currentStatus, "status selecionado": watch("status")});
-  // console.log(apartments.filter(x => x.id === watch("apt"))[0]?.id)
-  console.log({newstatus: newStatus, currentStatus: currentStatus, aptForm: watch("apt")});
-
-
-
   // Blocks Data
   useEffect(() => {
     const getBlocks = async () => {
@@ -89,13 +82,6 @@ function App() {
     getApartments();
     setValue("apt", "");
   }, [block])
-
-  // useEffect(() => {
-  //   setValue("status", "")
-  // }, [watch("apt")])
-
-  // console.log(apartments.filter(x => x.id === watch("apt"))[0]?.status);
-  // console.log(status)
 
   const NotifySuccess = () => {
     toast.success('Deslogado!', {
@@ -129,31 +115,33 @@ function App() {
     window.location.reload(true)
   }
 
-
   return (
     <div className="main-container">
       
       <Header />
 
       <section>
-        {isSignedIn ? <span>Escolha o bloco</span> : <span>Escolha o seu bloco</span>}
         <div className="input-wrapper">
-          <img src={apartment} alt="" />
-          <select 
-            id="block" 
-            defaultValue={""}
-            {...register("block")}
-          >
-            <option value="" disabled>Selecione</option>
-            {blocks?.map((data) => (
-              <option key={data.id} value={data.id}>{data.id}</option>
-            ))}
-          </select>
+          {isSignedIn ? <span>Escolha o bloco</span> : <span>Escolha o seu bloco</span>}
+          <div className="input-row">
+            <img src={apartment} alt="" />
+            <select 
+              id="block" 
+              defaultValue={""}
+              {...register("block")}
+            >
+              <option value="" disabled>Selecione</option>
+              {blocks?.map((data) => (
+                <option key={data.id} value={data.id}>{data.id}</option>
+              ))}
+            </select>
+          </div>
         </div>
+        
         
         {
           watch("block") !== "" & watch("block") !== undefined ?
-          <>
+          <div className="input-wrapper">
             {isSignedIn ? <span>Agora o apartamento</span> : <span>Agora o seu apartamento</span>}
             <select 
               id="apt" 
@@ -165,12 +153,12 @@ function App() {
                 <option key={option.id} value={option.id}>{option.id}</option>
               ))}
             </select>
-          </> :
+          </div> :
           null
         }
         {
           isSignedIn &  watch("apt") !== "" & watch("apt") !== undefined ?
-          <>
+          <div className="input-wrapper">
             <span>Selecione o status de encomenda</span>
 
             <select 
@@ -181,14 +169,7 @@ function App() {
                 <option key={option.id} value={option.text} selected={currentStatus ? true : false}>{option.text}</option>
               ))}
             </select>
-
-
-
-            {/* <select id="answer" {...register("answer")}>
-              <option value="yes">Chegou</option>
-              <option value="no">Não chegou</option>
-            </select> */}
-          </> :
+          </div> :
           null
         }
         { isSignedIn ?
@@ -201,10 +182,6 @@ function App() {
           <button onClick={handleResult}>Confirmar</button> :
           null
         }
-        
-        
-
-        {/* <button onClick={() => logoutUser()}>Signout</button> */}
       </section>
       <ToastContainer closeButton={false} />
     </div>

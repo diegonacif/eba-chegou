@@ -50,7 +50,10 @@ $green-bg-mirror-95: rgba(23, 161, 65, 0.95);
   width: 100vw;
 
   section {
-    @include flex(column);
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
     @include padding(3rem);
     min-height: calc(100vh - 4rem);
     height: 100%;
@@ -60,26 +63,28 @@ $green-bg-mirror-95: rgba(23, 161, 65, 0.95);
     background: rgb(0,0,0);
     background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(23,58,68,1) 50%, rgba(53,137,161,1) 100%);
 
-    span {
-      font-size: 1.25rem;
-
-      &:not(:first-child) {
-        margin-top: 3rem;
-      }
-      &:not(:last-child) {
-        margin-bottom: 2rem;
-      }
-    }
 
     .input-wrapper {
-      @include flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
+      gap: 2rem;
+      
+      span {
+        font-size: 1.375rem;
+      }
 
-      img {
-        height: 5rem;
+      .input-row {
+        @include flex;
+        align-items: center;
+        gap: 0.5rem;
+  
+        img {
+          height: 5rem;
+        }
       }
     }
+
 
     button {
       @include flex;
@@ -92,7 +97,7 @@ $green-bg-mirror-95: rgba(23, 161, 65, 0.95);
       font-size: 1.25rem;
       background-color: transparent;
       color: $white;
-      margin: 3rem auto 0;
+      // margin: 3rem auto 0;
     }
   }
 
