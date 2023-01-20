@@ -256,7 +256,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 }
 .menu-button-container .menu-modal hr {
   width: 90%;
-  margin: 0.5rem 0;
+  margin: 0.75rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.6);
   border-bottom: 0;
   border-left: 0;
@@ -286,4 +286,93 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .menu-button-container .menu-modal .menu-item a:active, .menu-button-container .menu-modal .menu-item span:active {
   background-color: rgba(81, 174, 200, 0.5);
   transition: background-color 0.1s;
+}
+
+.blocks-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+}
+.blocks-container section {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  min-height: calc(100vh - 4rem);
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4rem 2rem;
+  gap: 1rem;
+  color: #d9d9d9;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(23, 58, 68) 50%, rgb(53, 137, 161) 100%);
+}
+.blocks-container section a {
+  font-size: 1.375rem;
+}
+.blocks-container section .block-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 12rem;
+  height: 2.5rem;
+  background-color: #51aec8;
+  padding: 0 1rem;
+  border-radius: 16px;
+  border: 2px solid #0f0f0f;
+}
+.blocks-container section .block-wrapper button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 40%;
+  padding-bottom: 2px;
+  border: 0;
+  background-color: #3589a1;
+  font-size: 1.25rem;
+  color: white;
+  cursor: pointer;
+}
+.blocks-container section .block-wrapper span {
+  color: white;
+  font-size: 1.25rem;
+}
+.blocks-container .add-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  border: 2px solid #0f0f0f;
+  border: 2px solid #0f0f0f;
+  border-radius: 40%;
+  background-color: #51aec8;
+  color: white;
+  font-size: 3rem;
+  padding-bottom: 4px;
+  cursor: pointer;
+}
+.blocks-container .add-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 2rem;
+  position: fixed;
+  bottom: 3.5rem;
+  right: 6rem;
+  text-align: center;
+  font-size: 1.25rem;
 }/*# sourceMappingURL=App.css.map */

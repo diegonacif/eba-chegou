@@ -55,9 +55,18 @@ export const MenuButton = () => {
           (styles, item) => item &&
             <animated.div className="menu-modal" style={styles}>
               <div className="menu-item">
-                <Link to="/manager">Configurações</Link>
+                <Link to="/blocks">Blocos</Link>
+              </div>
+              <div className="menu-item">
+                <Link to="#">Apartamentos</Link>
+              </div>
+              <div className="menu-item">
+                <Link to="#">Personalizar cores</Link>
               </div>
               <hr />
+              <div className="menu-item">
+                <Link to="#">Redefinir senha</Link>
+              </div>
               <div className="menu-item">
                 <span onClick={() => logoutUser()}>Logout</span>
               </div>
