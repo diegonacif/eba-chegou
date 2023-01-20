@@ -182,6 +182,30 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   cursor: pointer;
 }
 
+.manager-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+}
+.manager-container section {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  min-height: calc(100vh - 4rem);
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  color: #d9d9d9;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(23, 58, 68) 50%, rgb(53, 137, 161) 100%);
+}
+.manager-container section a {
+  font-size: 1.375rem;
+}
+
 .header-container {
   display: flex;
   flex-direction: row;

@@ -11,6 +11,7 @@ import { Auth } from './pages/Auth/Auth';
 import { AuthGoogleProvider } from './contexts/AuthGoogleProvider';
 import { AuthEmailProvider } from './contexts/AuthEmailProvider';
 import { Manager } from './pages/Manager/Manager';
+import { PrivateRoutes } from './PrivateRoutes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -20,7 +21,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/" element={<App />} />
           <Route path="/result/:status" element={<Result />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/manager" element={<Manager />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/manager" element={<Manager />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthEmailProvider>

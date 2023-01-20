@@ -1,0 +1,24 @@
+.manager-container {
+  @include flex(column);
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+
+  section {
+    @include flex(column);
+    width: 100vw;
+    height: 100%;
+    min-height: calc(100vh - 4rem);
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+
+    color: $white;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(23,58,68,1) 50%, rgba(53,137,161,1) 100%);
+    
+    a {
+      font-size: 1.375rem;
+    }
+  }
+}
