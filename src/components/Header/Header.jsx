@@ -12,7 +12,9 @@ export const Header = () => {
 
   return (
     <div className="header-container">
-      <h2>Eba, chegou!</h2>
+      <Link to="/">
+        <h2>Eba, chegou!</h2>
+      </Link>
       {
         isSignedIn ?
         <MenuButton /> :
