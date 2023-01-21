@@ -38,7 +38,7 @@ export const Blocks = () => {
   const deleteBlock = async (blockId) => {
     await deleteDoc(doc(blocksCollectionRef, blockId))
     .then(() => {
-      console.log("O bloco foi deletado!");
+      console.log(`O bloco ${blockId} foi deletado!`);
     });
     refresh();
   }
@@ -60,7 +60,7 @@ export const Blocks = () => {
         <AddButton 
           path={"blocks"} 
           isApartment={false}
-          refresh={setRerender}
+          refresh={refresh}
         />
       </section>
       <input type="text" className="add-input" onChange={e => setNewBlock(e.target.value)}/>
