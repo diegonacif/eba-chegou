@@ -58,7 +58,7 @@ export const MenuButton = () => {
                 <Link to="/blocks">Blocos</Link>
               </div>
               <div className="menu-item">
-                <Link to="#">Apartamentos</Link>
+                <Link to="/apartments">Apartamentos</Link>
               </div>
               <div className="menu-item">
                 <Link to="#">Personalizar cores</Link>

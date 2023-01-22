@@ -37,7 +37,7 @@ function App() {
     setValue,
     getValues
   } = useForm({
-    mode: "all",
+    mode: "all"
   });
 
   // Current Block State
@@ -81,7 +81,14 @@ function App() {
     }
     getApartments();
     setValue("apt", "");
+    setValue("status", currentStatus ? "Chegou" : "Não Chegou");
   }, [block])
+
+  // Status Data
+  useEffect(() => {
+    console.log(currentStatus);
+    setValue("status", currentStatus ? "Chegou" : "Não Chegou");
+  }, [currentStatus])
 
   const NotifySuccess = () => {
     toast.success('Deslogado!', {
@@ -167,7 +174,13 @@ function App() {
               {...register("status")}
             >
               {status.map((option) => (
-                <option key={option.id} value={option.text} selected={currentStatus ? true : false}>{option.text}</option>
+                <option 
+                  key={option.id} 
+                  value={option.text} 
+                  // selected={currentStatus ? true : false}
+                >
+                  {option.text}
+                </option>
               ))}
             </select>
           </div> :

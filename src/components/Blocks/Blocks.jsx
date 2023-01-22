@@ -31,7 +31,7 @@ export const Blocks = () => {
     getBlocks();
   }, [rerender])
 
-   // Delete Block
+  // Delete Block
   const deleteBlock = async (blockId) => {
     await deleteDoc(doc(blocksCollectionRef, blockId))
     .then(() => {

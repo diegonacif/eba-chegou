@@ -13,6 +13,7 @@ import { AuthEmailProvider } from './contexts/AuthEmailProvider';
 // import { Manager } from './pages/Manager/Manager';
 import { PrivateRoutes } from './PrivateRoutes';
 import { Blocks } from './components/Blocks/Blocks';
+import { Apartments } from './components/Apartments/Apartments';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/auth" element={<Auth />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/blocks" element={<Blocks />} />
+            <Route path="/apartments" element={<Apartments />} />
           </Route>
         </Routes>
       </BrowserRouter>

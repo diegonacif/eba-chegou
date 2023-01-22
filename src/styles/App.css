@@ -402,6 +402,106 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   right: 2.5rem;
 }
 
+.apartments-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+}
+.apartments-container section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  min-height: calc(100vh - 4rem);
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4rem 2rem;
+  gap: 1rem;
+  color: #d9d9d9;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(23, 58, 68) 50%, rgb(53, 137, 161) 100%);
+}
+.apartments-container section .block-wrapper {
+  display: flex;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.apartments-container section .block-wrapper span {
+  font-size: 1.375rem;
+}
+.apartments-container section .block-wrapper select {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 2.75rem;
+  border-radius: 16px;
+  border: 0;
+  padding: 0 0.5rem;
+  text-align: center;
+  background-color: #51aec8;
+  font-size: 1.5rem;
+}
+.apartments-container section .apartment-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.apartments-container section .apartment-wrapper .apartment-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 12rem;
+  height: 2.5rem;
+  background-color: #51aec8;
+  padding: 0 1rem;
+  border-radius: 16px;
+  border: 2px solid #0f0f0f;
+}
+.apartments-container section .apartment-wrapper .apartment-row span {
+  color: white;
+}
+.apartments-container section .apartment-wrapper .apartment-row button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 40%;
+  padding-bottom: 2px;
+  border: 0;
+  background-color: #3589a1;
+  font-size: 1.25rem;
+  color: white;
+  cursor: pointer;
+}
+.apartments-container .add-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: fixed;
+  bottom: 3.5rem;
+  right: 2.5rem;
+}
+
 .add-button-container {
   display: flex;
   flex-direction: row;
