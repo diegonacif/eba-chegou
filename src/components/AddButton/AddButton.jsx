@@ -28,9 +28,9 @@ export const AddButton = ({ path, isApartment, refresh }) => {
 
   // Modal Animation
   const transitions = useTransition(isMenuOpen, {
-    from: { x: 10, y: 0, opacity: 0 },
+    from: { x: 30, y: 0, opacity: 0 },
     enter: { x: 0, y: 0, opacity: 1 },
-    leave: { x: 10, y: 0, opacity: 0 },
+    leave: { x: 30, y: 0, opacity: 0 },
     config: {duration: 200},
   });
 
@@ -66,7 +66,7 @@ export const AddButton = ({ path, isApartment, refresh }) => {
       }
       {
         isMenuOpen ? 
-        <button onClick={() => handleSubmit()}>+</button> : 
+        <button className={isMenuOpen ? "button-open" : null} onClick={() => handleSubmit()}>+</button> : 
         <button onClick={() => handleMenuOpen()}>+</button>
       }
       

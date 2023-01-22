@@ -2,7 +2,7 @@
   @include flex;
   position: relative;
   height: fit-content;
-  width: 12rem;
+  width: 13rem;
   align-items: center;
   justify-content: flex-end;
 
@@ -14,13 +14,13 @@
     height: 2rem;
     text-align: center;
     font-size: 1.25rem;
-    padding-right: 0.25rem;
+    padding-right: 0.5rem;
     border-radius: 8px 0 0 8px;
     border: none;
 
     position: absolute;
-    top: 0.5rem;
-    left: 0.25rem;
+    top: 0.75rem;
+    left: 0.6rem;
 
     z-index: 1;
   }
@@ -29,8 +29,8 @@
     @include flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border: 2px solid $black-bg;border: 2px solid $black-bg;
     border-radius: 40%;
     background-color: $primary-color;
@@ -38,7 +38,13 @@
     font-size: 3rem;
     padding-bottom: 4px;
     cursor: pointer;
+    transition: transform 0.2s;
 
     z-index: 2;
+
+    &.button-open {
+      transform: scale(1.2);
+      transition: transform 0.2s;
+    }
   }
 }
