@@ -177,7 +177,6 @@ function App() {
                 <option 
                   key={option.id} 
                   value={option.text} 
-                  // selected={currentStatus ? true : false}
                 >
                   {option.text}
                 </option>

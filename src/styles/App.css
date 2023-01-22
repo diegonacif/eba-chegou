@@ -68,6 +68,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   font-size: 1.25rem;
   background-color: transparent;
   color: #d9d9d9;
+  cursor: pointer;
 }
 .main-container :is(select, input) {
   font-size: 1.25rem;
