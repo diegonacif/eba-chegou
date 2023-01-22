@@ -6,27 +6,48 @@ import {
   signOut
   } from 'firebase/auth'
 import { auth } from '../services/firebase-config';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useSessionStorage } from 'usehooks-ts'
 
 import { toast, ToastContainer } from 'react-toastify';
 
 export const AuthEmailContext = createContext({});
 
 export const AuthEmailProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+
+  const [userMail, setUserMail] = useSessionStorage('mail', 0);
+  const [accessToken, setAccessToken] = useSessionStorage('access_token', 0);
 
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  useEffect(() => {
-    setIsSignedIn(!!user);
-  }, [user])
+  // console.log({
+  //   // isLoading: isLoading,
+  //   isSignedIn: isSignedIn,
+  // });
+
+  // useEffect(() => {
+  //   setIsSignedIn(!!user);
+  //   // setIsLoading(false);
+  // }, [user])
+
+  const [userState, loading, error] = useAuthState(auth);
 
   onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser)
+    if (loading) {
+      console.log("loading user state")
+      setIsLoading(true);
+    } else {
+      setUser(currentUser);
+      setIsSignedIn(!!currentUser);
+      setIsLoading(false);
+    }
   })
 
   const registerUser = async () => {
@@ -48,7 +69,10 @@ export const AuthEmailProvider = ({ children }) => {
         loginEmail, 
         loginPassword
       );
-      console.log(user);
+      setUserMail(user?.user.email);
+      setAccessToken(user?.user.accessToken);
+      console.log({email: user?.user.email, accessToken: user?.user.accessToken});
+
     } catch (error) {
       console.log(error.message);
     }
@@ -74,7 +98,8 @@ export const AuthEmailProvider = ({ children }) => {
       loginUser,
       logoutUser,
       isSignedIn,
-      errorMsg
+      errorMsg,
+      isLoading
     }}>
       {children}
     </AuthEmailContext.Provider>

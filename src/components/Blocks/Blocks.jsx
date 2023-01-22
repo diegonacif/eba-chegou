@@ -30,9 +30,9 @@ export const Blocks = () => {
   }, [rerender])
 
   // New Block
-  const createNewBlock = async () => {
-    await setDoc(doc(blocksCollectionRef, newBlock), {});
-  }
+  // const createNewBlock = async () => {
+  //   await setDoc(doc(blocksCollectionRef, newBlock), {});
+  // }
 
    // Delete Block
   const deleteBlock = async (blockId) => {
@@ -43,19 +43,18 @@ export const Blocks = () => {
     refresh();
   }
 
+  // console.log(blocks.map(blockId => blockId.index))
+
   return (
     <div className="blocks-container">
       <Header />
       {loading ? "Loading..." : null}
       <section>
         {blocks?.map((data, index) => (
-          <>
-            <div className="block-wrapper" key={data.id}>
-              <span key={data.id}>Bloco {data.id}</span>
-              <button onClick={() => deleteBlock(data.id)}>-</button>
-            </div>
-            {/* <Apartments path={`blocks/${data.id}/apartments`} key={index} /> */}
-          </>
+          <div className="block-wrapper" key={Math.random()}>
+            <span>Bloco {data.id}</span>
+            <button onClick={() => deleteBlock(data.id)}>-</button>
+          </div>
         ))}
         <AddButton 
           path={"blocks"} 
