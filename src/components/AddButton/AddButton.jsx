@@ -58,7 +58,8 @@ export const AddButton = ({ path, isApartment, refresh }) => {
               ref={inputRef} 
               placeholder={isApartment ? "apartamento" : "Digite o bloco"} 
               type="text" 
-              onChange={(e) => setName(e.target.value)} 
+              // onChange={(e) => setName(e.target.value)} 
+              onChange={(e) => setName(e.target.value < 10 ? `0${e.target.value}` : e.target.value)} 
               style={styles}
             />
           </>
