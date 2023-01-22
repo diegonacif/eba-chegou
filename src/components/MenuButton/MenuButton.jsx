@@ -40,7 +40,7 @@ export const MenuButton = () => {
   });
 
   return (
-    <div className="menu-button-container">
+    <div className="menu-button-container" ref={refContainer}>
       <Hamburguer 
         toggled={isMenuOpen} 
         toggle={handleMenuOpen}
@@ -53,7 +53,7 @@ export const MenuButton = () => {
       {
         transitions(
           (styles, item) => item &&
-            <animated.div className="menu-modal" style={styles}>
+            <animated.div className="menu-modal" style={styles} >
               <div className="menu-item">
                 <Link to="/blocks">Blocos</Link>
               </div>

@@ -56,15 +56,19 @@ export const Blocks = () => {
             <button onClick={() => deleteBlock(data.id)}>-</button>
           </div>
         ))}
+        
+      </section>
+      
+      <div className="add-button-wrapper">
         <AddButton 
           path={"blocks"} 
           isApartment={false}
           refresh={refresh}
         />
-      </section>
-      <input type="text" className="add-input" onChange={e => setNewBlock(e.target.value)}/>
+      </div>
+      {/* <input type="text" className="add-input" onChange={e => setNewBlock(e.target.value)}/> */}
       {/* <button className="add-button" onClick={() => createNewBlock()}>+</button> */}
-      <button className="add-button" onClick={refresh}>+</button>
+      {/* <button className="add-button" onClick={refresh}>+</button> */}
     </div>
   )
 }
