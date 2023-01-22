@@ -42,7 +42,7 @@ export const AddButton = ({ path, isApartment, refresh }) => {
       console.log(`O ${isApartment ? "apartamento" : "bloco"} ${name} foi criado! `)
     });
     inputRef.current.value = "";
-    // refresh(prevState => !prevState);
+    setName("");
     refresh();
   }
 
