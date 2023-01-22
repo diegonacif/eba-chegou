@@ -122,6 +122,7 @@ function App() {
 
       <section>
         <div className="input-wrapper">
+          {isSignedIn ? <h2>Registrar encomendas</h2> : null}
           {isSignedIn ? <span>Escolha o bloco</span> : <span>Escolha o seu bloco</span>}
           <div className="input-row">
             <img src={apartment} alt="" />

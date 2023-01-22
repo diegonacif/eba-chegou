@@ -44,6 +44,9 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .main-container section .input-wrapper span {
   font-size: 1.375rem;
 }
+.main-container section .input-wrapper h2 {
+  color: #12262b;
+}
 .main-container section .input-wrapper .input-row {
   display: flex;
   flex-direction: row;
@@ -299,6 +302,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .blocks-container section {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 100vw;
   height: 100%;
   min-height: calc(100vh - 4rem);
@@ -312,6 +316,12 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 }
 .blocks-container section a {
   font-size: 1.375rem;
+}
+.blocks-container section img#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .blocks-container section .block-wrapper {
   display: flex;

@@ -74,6 +74,10 @@ $green-bg-mirror-95: rgba(23, 161, 65, 0.95);
         font-size: 1.375rem;
       }
 
+      h2 {
+        color: $black;
+      }
+
       .input-row {
         @include flex;
         align-items: center;

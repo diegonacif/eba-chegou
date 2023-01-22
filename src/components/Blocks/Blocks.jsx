@@ -8,6 +8,8 @@ import "../../styles/App.css";
 import { Apartments } from '../Apartments/Apartments';
 import { AddButton } from '../AddButton/AddButton';
 
+import loadingGif from '../../assets/724.svg';
+
 export const Blocks = () => {
   const blocksCollectionRef = collection(db, "blocks");
   const [blocks, setBlocks] = useState([]);
@@ -29,11 +31,6 @@ export const Blocks = () => {
     getBlocks();
   }, [rerender])
 
-  // New Block
-  // const createNewBlock = async () => {
-  //   await setDoc(doc(blocksCollectionRef, newBlock), {});
-  // }
-
    // Delete Block
   const deleteBlock = async (blockId) => {
     await deleteDoc(doc(blocksCollectionRef, blockId))
@@ -43,13 +40,20 @@ export const Blocks = () => {
     refresh();
   }
 
-  // console.log(blocks.map(blockId => blockId.index))
-
   return (
     <div className="blocks-container">
       <Header />
-      {loading ? "Loading..." : null}
       <section>
+        
+        {
+          loading ?
+          <img 
+            src={loadingGif} 
+            alt="loading spinner" 
+            id="loading" 
+          /> :
+          null
+        }
         {blocks?.map((data, index) => (
           <div className="block-wrapper" key={Math.random()}>
             <span>Bloco {data.id}</span>

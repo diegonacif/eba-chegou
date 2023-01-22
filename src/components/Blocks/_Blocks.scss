@@ -7,6 +7,7 @@
 
   section {
     @include flex(column);
+    position: relative;
     width: 100vw;
     height: 100%;
     min-height: calc(100vh - 4rem);
@@ -21,6 +22,13 @@
     
     a {
       font-size: 1.375rem;
+    }
+
+    img#loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .block-wrapper {
