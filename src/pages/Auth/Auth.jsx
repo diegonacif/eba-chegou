@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { AuthGoogleContext } from '../../contexts/AuthGoogleProvider';
 import { AuthEmailContext } from '../../contexts/AuthEmailProvider';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 
 
@@ -17,7 +18,7 @@ export const Auth = () => {
   //   await handleGoogleSignIn();
   // }
 
-  // Controlador Hook Form
+  // Hook Form Controller
   const {
     watch,
     register,
@@ -53,6 +54,39 @@ export const Auth = () => {
     loginUser();
   }
 
+  // Password Reset
+  const auth = getAuth();
+  function handleSendPasswordReset() {
+    sendPasswordResetEmail(auth, getValues("emailReset"))
+      .then(() => {
+        console.log("password reset sent");
+        setValue("emailReset", "");
+        setIsForgotPassword(false);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error({ "errorCode": errorCode, "errorMessage": errorMessage })
+      });
+  }
+
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+
+  // console.log({
+  //   "email": watch("email"),
+  //   "resetEmail": watch("emailReset")
+  // })
+
+  // Reset State
+  function handleResetState() {
+    setIsForgotPassword(current => !current);
+    setValue("email", "");
+    setValue("emailReset", "");
+    setValue("password", "");
+  }
+
+
+  // Toasts
   const NotifyError = () => {
     toast.error('Senha incorreta!', {
       position: "bottom-right",
@@ -83,25 +117,78 @@ export const Auth = () => {
     <div className="auth-container">
       <header>
         <h2>Área do Porteiro</h2>
-        <Link to="/">
-          <XCircle size={40} color="#154854" weight="fill" />
-        </Link>
+        {
+          !isForgotPassword ?
+          <Link to="/">
+            <XCircle size={40} color="#154854" weight="fill" />
+          </Link> :
+          <div className="x-wrapper" onClick={() => handleResetState()}>
+            <XCircle size={40} color="#154854" weight="fill" />
+          </div>
+        }
+        
       </header>
-      <section>
-        <span>Faça login para continuar</span>
-        <div className="input-wrapper">
-          <UserCircle size={36} color="#154854" weight="duotone" />
-          <input type="text" placeholder="Email" {...register("email")}/>
-        </div>
-        <div className="input-wrapper">
-          <LockKeyOpen size={36} color="#154854" weight="duotone" />
-          <input type="password" placeholder="Senha" {...register("password")}/>
-        </div>
-        
-          <button onClick={() => handleLogin()}>Confirmar</button> :
-        
-        <ToastContainer closeButton={false} />
-      </section>
+      {
+        !isForgotPassword ?
+        <>
+          <section>
+            <span>Faça login para continuar</span>
+            <div className="input-wrapper">
+              <UserCircle size={36} color="#154854" weight="duotone" />
+              <input 
+                type="text" 
+                placeholder="Email" 
+                {...register("email")}
+              />
+            </div>
+            <div className="input-wrapper">
+              <LockKeyOpen size={36} color="#154854" weight="duotone" />
+              <input 
+                type="password" 
+                placeholder="Senha" 
+                {...register("password")}
+              />
+            </div>
+            <div className="forgot-password-wrapper">
+              <span 
+                id="forgot-password" 
+                onClick={() => handleResetState()}>
+                  Esqueci a senha
+                </span>
+            </div>
+            
+              <button onClick={() => handleLogin()}>Confirmar</button> :
+            
+            <ToastContainer closeButton={false} />
+          </section>
+        </> :
+        <>
+        <section>
+          <span id="reset-title">Insira seu e-mail e clique em enviar</span>
+          <div className="input-wrapper">
+            <UserCircle size={36} color="#154854" weight="duotone" />
+            <input 
+              type="text" 
+              placeholder="Email" 
+              {...register("emailReset")}
+            />
+          </div>
+          
+          {/* <div className="forgot-password-wrapper">
+            <span 
+              id="forgot-password" 
+              onClick={() => handleResetState()}>
+                Voltar
+              </span>
+          </div> */}
+          
+            <button onClick={() => handleSendPasswordReset()}>Enviar</button> :
+          
+          <ToastContainer closeButton={false} />
+        </section>
+      </>
+      }
+      
     </div>
   )
 }

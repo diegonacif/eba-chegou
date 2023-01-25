@@ -115,10 +115,11 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   background-color: #51aec8;
   color: #12262b;
 }
-.auth-container header a {
+.auth-container header a, .auth-container header .x-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 }
 .auth-container section {
   display: flex;
@@ -131,6 +132,19 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .auth-container section span {
   color: #d9d9d9;
   font-size: 1.5rem;
+}
+.auth-container section span#reset-title {
+  font-size: 1.375rem;
+}
+.auth-container section .forgot-password-wrapper {
+  display: flex;
+  width: 20rem;
+  justify-content: center;
+}
+.auth-container section .forgot-password-wrapper span#forgot-password {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
 }
 .auth-container section .input-wrapper {
   display: flex;
