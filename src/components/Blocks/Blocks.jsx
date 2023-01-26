@@ -54,6 +54,8 @@ export const Blocks = () => {
           /> :
           null
         }
+        
+        <h3>Gerenciador de blocos</h3>
         {blocks?.map((data, index) => (
           <div className="block-wrapper" key={Math.random()}>
             <span>Bloco {data.id}</span>
