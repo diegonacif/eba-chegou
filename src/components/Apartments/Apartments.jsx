@@ -84,7 +84,7 @@ export const Apartments = () => {
             defaultValue={""}
             {...register("block")}
           >
-            <option value="" disabled>Bloco ?</option>
+            <option value="" disabled>Bloco</option>
             {blocks?.map((data) => (
               <option key={data.id} value={data.id}>{data.id}</option>
             ))}

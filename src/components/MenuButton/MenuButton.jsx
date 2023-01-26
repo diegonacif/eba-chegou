@@ -60,15 +60,15 @@ export const MenuButton = () => {
               <div className="menu-item">
                 <Link to="/apartments">Apartamentos</Link>
               </div>
-              <div className="menu-item">
+              {/* <div className="menu-item">
                 <Link to="#">Personalizar cores</Link>
-              </div>
+              </div> */}
               <hr />
               <div className="menu-item">
-                <Link to="#">Redefinir senha</Link>
+                <Link to="/manager">Configurações</Link>
               </div>
               <div className="menu-item">
-                <span onClick={() => logoutUser()}>Logout</span>
+                <span onClick={() => logoutUser()}>Deslogar</span>
               </div>
             </animated.div>
         )

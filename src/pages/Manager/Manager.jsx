@@ -7,8 +7,8 @@ export const Manager = () => {
     <div className="manager-container">
       <Header />
       <section>
-        <Link to="#">Edição de blocos</Link>
-        <Link to="#">Edição de apartamentos</Link>
+        {/* <Link to="#">Edição de blocos</Link>
+        <Link to="#">Edição de apartamentos</Link> */}
         <Link to="#">Seleção de cores</Link>
         <Link to="#">Redefinir senha</Link>
       </section>

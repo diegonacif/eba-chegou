@@ -27,7 +27,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   grid-template-rows: 1fr 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
-  padding: 3rem 1rem 0;
+  padding: 2rem 1rem 0;
   min-height: calc(100vh - 4rem);
   height: 100%;
   position: relative;

@@ -10,7 +10,7 @@ import { Result } from './pages/Result/Result';
 import { Auth } from './pages/Auth/Auth';
 // import { AuthGoogleProvider } from './contexts/AuthGoogleProvider';
 import { AuthEmailProvider } from './contexts/AuthEmailProvider';
-// import { Manager } from './pages/Manager/Manager';
+import { Manager } from './pages/Manager/Manager';
 import { PrivateRoutes } from './PrivateRoutes';
 import { Blocks } from './components/Blocks/Blocks';
 import { Apartments } from './components/Apartments/Apartments';
@@ -26,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route element={<PrivateRoutes />}>
             <Route path="/blocks" element={<Blocks />} />
             <Route path="/apartments" element={<Apartments />} />
+            <Route path="/manager" element={<Manager />} />
           </Route>
         </Routes>
       </BrowserRouter>

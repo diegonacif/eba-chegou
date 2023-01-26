@@ -54,7 +54,7 @@ $green-bg-mirror-95: rgba(23, 161, 65, 0.95);
     grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
-    @include padding(3rem);
+    @include padding(2rem);
     min-height: calc(100vh - 4rem);
     height: 100%;
     position: relative;
