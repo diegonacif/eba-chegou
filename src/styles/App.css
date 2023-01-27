@@ -230,6 +230,7 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
   top: 1rem;
   right: 1.2rem;
   cursor: pointer;
+  z-index: 2;
 }
 
 .header-container {
@@ -580,4 +581,80 @@ a:focus-visible, a:focus-within, a:focus, a:active, a:target {
 .add-button-container button.button-open {
   transform: scale(1.2);
   transition: transform 0.2s;
+}
+
+.redefine-password-container {
+  display: flex;
+  flex-direction: row;
+}
+.redefine-password-container section {
+  gap: 0;
+}
+.redefine-password-container section .input-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: center;
+}
+.redefine-password-container section .input-wrapper svg {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+}
+.redefine-password-container section .input-wrapper .eye-wrapper {
+  position: absolute;
+  width: 32px;
+  height: 100%;
+  top: 0;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.redefine-password-container section .input-wrapper .eye-wrapper svg {
+  position: static;
+  transform: none;
+}
+.redefine-password-container section .input-wrapper:first-of-type {
+  margin-top: 2rem;
+}
+.redefine-password-container section .input-wrapper:not(:first-of-type) {
+  margin-top: 1rem;
+}
+.redefine-password-container section .input-wrapper input {
+  width: 20rem;
+  height: 2.75rem;
+  border-radius: 16px;
+  border: 0;
+  padding: 0 0.5rem;
+  background-color: #51aec8;
+  font-size: 1.5rem;
+  padding: 0 3.25rem;
+}
+.redefine-password-container section .input-wrapper input::-moz-placeholder {
+  color: #545454;
+  font-size: 1.25rem;
+}
+.redefine-password-container section .input-wrapper input:-ms-input-placeholder {
+  color: #545454;
+  font-size: 1.25rem;
+}
+.redefine-password-container section .input-wrapper input::placeholder {
+  color: #545454;
+  font-size: 1.25rem;
+}
+.redefine-password-container section button {
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 2.5rem;
+  border: 2px solid #51aec8;
+  border-radius: 16px;
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: #d9d9d9;
+  margin: 4rem auto 0;
+  cursor: pointer;
 }/*# sourceMappingURL=App.css.map */

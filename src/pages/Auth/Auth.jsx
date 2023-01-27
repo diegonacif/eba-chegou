@@ -52,6 +52,9 @@ export const Auth = () => {
 
   function handleLogin () {
     loginUser();
+    setValue("email", "");
+    setValue("emailReset", "");
+    setValue("password", "");
   }
 
   // Password Reset
