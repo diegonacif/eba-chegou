@@ -24,7 +24,6 @@ export const RedefinePassword = () => {
   const auth = getAuth();
   const user = auth.currentUser;
   const [newPassword, setNewPassword] = useState("");
-  console.log(newPassword.length)
 
   useEffect(() => {
     watch("newPassword") === watch("repeatNewPassword") ?
